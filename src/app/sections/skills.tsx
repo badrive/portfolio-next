@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { CanvasRevealEffect } from "../../components/ui/canvas-reveal-effect";
 import  react  from "../../components/imgs/react.png"
 import  laravel  from "../../components/imgs/laravel.png"
-import { img } from "framer-motion/client";
+// import { img } from "framer-motion/client";
 
 export default function Home() {
     return (
