@@ -11,7 +11,7 @@ export default function Home() {
     return (
         <>
         <h1 className="bg-black text-white text-center text-4xl font-bold p-5">Web Stack</h1>
-          <div className="py-20 flex flex-col lg:flex-row items-center justify-center bg-black w-full gap-4 mx-auto px-8 text-center">
+          <div className="py-20 flex flex-col lg:flex-row items-center justify-center bg-black w-full gap-8 mx-auto px-8 text-center">
             <Card title="React.js" icon={<Reactjs />}>
               <CanvasRevealEffect
                 animationSpeed={3}
@@ -45,7 +45,7 @@ export default function Home() {
         <div
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
-          className="border  group/canvas-card flex items-center justify-center border-white/[0.2]  max-w-sm w-full mx-auto p-4  h-[30rem] relative"
+          className="border  group/canvas-card flex items-center justify-center border-white/[0.2]  max-w-sm w-[20rem]  p-4  h-[20rem] relative"
         >
           <Icon className="absolute h-6 w-6 -top-3 -left-3 text-white " />
           <Icon className="absolute h-6 w-6 -bottom-3 -left-3 text-white k" />
@@ -104,8 +104,8 @@ export default function Home() {
         <Image
         src={react}
         alt="react"
-        width={100}
-        height={100}
+        width={60}
+        height={60}
         />
         );
       };
@@ -116,8 +116,8 @@ export default function Home() {
         <Image
         src={laravel}
         alt="laravel"
-        width={100}
-        height={100}
+        width={60}
+        height={60}
         />
         );
       };
