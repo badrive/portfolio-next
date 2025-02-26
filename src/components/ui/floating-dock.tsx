@@ -22,9 +22,9 @@ export const FloatingDock = ({
 }) => {
   return (
     <>
-    <div className="fixed bottom-10  z-50">
-      <FloatingDockDesktop items={items} className={desktopClassName} />
-    </div>
+      <div className="fixed bottom-10 z-50">
+        <FloatingDockDesktop items={items} className={desktopClassName} />
+      </div>
       <FloatingDockMobile items={items} className={mobileClassName} />
     </>
   );
@@ -98,7 +98,7 @@ const FloatingDockDesktop = ({
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "mx-auto hidden md:flex h-16 gap-4 items-end  rounded-2xl bg-neutral-900 px-4 pb-3",
+        "mx-auto hidden md:flex h-16 gap-4 items-end rounded-2xl bg-neutral-900 px-4 pb-3",
         className
       )}
     >
@@ -124,19 +124,13 @@ function IconContainer({
 
   const distance = useTransform(mouseX, (val) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
-
     return val - bounds.x - bounds.width / 2;
   });
 
   const widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
   const heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-
   const widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
-  const heightTransformIcon = useTransform(
-    distance,
-    [-150, 0, 150],
-    [20, 40, 20]
-  );
+  const heightTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
 
   const width = useSpring(widthTransform, {
     mass: 0.1,
@@ -148,7 +142,6 @@ function IconContainer({
     stiffness: 150,
     damping: 12,
   });
-
   const widthIcon = useSpring(widthTransformIcon, {
     mass: 0.1,
     stiffness: 150,
@@ -177,7 +170,7 @@ function IconContainer({
               initial={{ opacity: 0, y: 10, x: "-50%" }}
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: 2, x: "-50%" }}
-              className="px-2 py-0.5 whitespace-pre rounded-md bg-neutral-800 border-neutral-900 text-white   absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs"
+              className="px-2 py-0.5 whitespace-pre rounded-md bg-neutral-800 border-neutral-900 text-white absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs"
             >
               {title}
             </motion.div>
