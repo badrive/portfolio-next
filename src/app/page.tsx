@@ -8,10 +8,10 @@ import Skills from "./sections/skills"
 export default function Home() {
   return (
     <>
-      <Dock />
+      {/* <Dock /> */}
       <Hero />
-      <Magnet />
-      <Skills />
+      {/* <Magnet />
+      <Skills /> */}
     </>
   );
 }
