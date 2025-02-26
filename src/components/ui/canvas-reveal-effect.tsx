@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import React, { useMemo, useRef } from "react";
+import React, { useMemo, useRef, useCallback } from "react";
 import * as THREE from "three";
 
 type Uniforms = {
@@ -189,7 +189,7 @@ const ShaderMaterial = ({
   uniforms: Uniforms;
 }) => {
   const { size } = useThree();
-  const ref = useRef<THREE.Mesh>(null); // Fixed useRef
+  const ref = useRef<THREE.Mesh>(null);
   let lastFrameTime = 0;
 
   useFrame(({ clock }) => {
@@ -205,7 +205,7 @@ const ShaderMaterial = ({
     timeLocation.value = timestamp;
   });
 
-  const getUniforms = () => {
+  const getUniforms = useCallback(() => {
     const preparedUniforms: PreparedUniforms = {};
 
     for (const uniformName in uniforms) {
@@ -217,7 +217,7 @@ const ShaderMaterial = ({
           break;
         case "uniform3f":
           preparedUniforms[uniformName] = {
-            value: new THREE.Vector3().fromArray(uniform.value as number[]),
+            value: Array.from(new THREE.Vector3().fromArray(uniform.value as number[])),
             type: "3f",
           };
           break;
@@ -226,15 +226,15 @@ const ShaderMaterial = ({
           break;
         case "uniform3fv":
           preparedUniforms[uniformName] = {
-            value: (uniform.value as Vector3Array[]).map((v) =>
-              new THREE.Vector3().fromArray(v)
+            value: (uniform.value as number[][]).map((v) =>
+              Array.from(new THREE.Vector3().fromArray(v))
             ),
             type: "3fv",
           };
           break;
         case "uniform2f":
           preparedUniforms[uniformName] = {
-            value: new THREE.Vector2().fromArray(uniform.value as number[]),
+            value: Array.from(new THREE.Vector2().fromArray(uniform.value as number[])),
             type: "2f",
           };
           break;
@@ -246,10 +246,10 @@ const ShaderMaterial = ({
 
     preparedUniforms["u_time"] = { value: 0, type: "1f" };
     preparedUniforms["u_resolution"] = {
-      value: new THREE.Vector2(size.width * 2, size.height * 2),
+      value: [size.width * 2, size.height * 2],
     };
     return preparedUniforms;
-  };
+  }, [uniforms, size.width, size.height]);
 
   const material = useMemo(() => {
     const materialObject = new THREE.ShaderMaterial({
@@ -275,7 +275,7 @@ const ShaderMaterial = ({
     });
 
     return materialObject;
-  }, [source, getUniforms]); // Fixed useMemo dependencies
+  }, [source, getUniforms]);
 
   return (
     <mesh ref={ref}>
