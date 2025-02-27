@@ -37,7 +37,7 @@ export default function Home() {
     </div>
 
       {/* <h1 className="bg-black text-white text-center text-4xl font-bold p-5">Web Stack ⚡️</h1> */}
-      <div className="py-14 flex flex-col lg:flex-row items-center justify-center bg-black w-full gap-8 mx-auto px-8 text-center">
+      <div className="py-14 pb-48 flex flex-col lg:flex-row items-center justify-center bg-black w-full gap-8 mx-auto px-8 text-center">
         <Card title="React.js" icon={<Reactjs />}>
           <CanvasRevealEffect
             animationSpeed={3}
@@ -54,7 +54,7 @@ export default function Home() {
         </Card>
       </div>
       {/* small cards  */}
-      <div className="py-14 flex flex-col lg:flex-row items-center justify-center bg-black w-full gap-8 mx-auto px-8 text-center">
+      {/* <div className="py-14 flex flex-col lg:flex-row items-center justify-center bg-black w-full gap-8 mx-auto px-8 text-center">
 
         <Card title="Laravel" icon={<Laravel/>} height="10rem" width="10rem">
           <CanvasRevealEffect
@@ -95,7 +95,7 @@ export default function Home() {
             colors={[[255, 68, 0]]}
           />
         </Card>
-      </div>
+      </div> */}
     </>
   );
 }
