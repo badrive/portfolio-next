@@ -29,7 +29,7 @@ export default function Home() {
         Hi,😁<br /> I&apos;m Badreddine Faras <br />
         {" "}
         <Highlight className="text-white">
-          comming soon ...
+          Full-stack developer
         </Highlight>
       </motion.h1>
     </HeroHighlight>
