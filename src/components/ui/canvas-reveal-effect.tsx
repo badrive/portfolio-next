@@ -208,15 +208,15 @@ const ShaderMaterial = ({
     timeLocation.value = timestamp;
   });
 
-  const getUniforms = () => {
-    const preparedUniforms: { [key: string]: { value: any; type?: string } } = {};
+  const getUniforms = (): { [key: string]: { value: number | THREE.Vector2 | THREE.Vector3 | number[] | THREE.Vector3[]; type?: string } } => {
+    const preparedUniforms: { [key: string]: { value: number | THREE.Vector2 | THREE.Vector3 | number[] | THREE.Vector3[]; type?: string } } = {};
 
     for (const uniformName in uniforms) {
       const uniform: { value: number[] | number[][] | number; type: string } = uniforms[uniformName];
 
       switch (uniform.type) {
         case "uniform1f":
-          preparedUniforms[uniformName] = { value: uniform.value, type: "1f" };
+          preparedUniforms[uniformName] = { value: uniform.value as number, type: "1f" };
           break;
         case "uniform3f":
           preparedUniforms[uniformName] = {
@@ -225,7 +225,7 @@ const ShaderMaterial = ({
           };
           break;
         case "uniform1fv":
-          preparedUniforms[uniformName] = { value: uniform.value, type: "1fv" };
+          preparedUniforms[uniformName] = { value: uniform.value as number[], type: "1fv" };
           break;
         case "uniform3fv":
           preparedUniforms[uniformName] = {
@@ -279,13 +279,15 @@ const ShaderMaterial = ({
     });
 
     return materialObject;
-  }, [size.width, size.height, source]);
+  }, [size.width, size.height, source, getUniforms]);
+
+  type NewType = React.MutableRefObject<THREE.Mesh | null>;
 
   return (
-    <mesh ref={ref as any}>
-      <planeGeometry args={[2, 2]} />
-      <primitive object={material} attach="material" />
-    </mesh>
+    <mesh ref={ref as NewType}>
+    <planeGeometry args={[2, 2]} />
+    <primitive object={material} attach="material" />
+  </mesh>
   );
 };
 
