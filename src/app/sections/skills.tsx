@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { CanvasRevealEffect } from "../../components/ui/canvas-reveal-effect";
+import CanvasRevealEffect from "../../components/ui/canvas-reveal-effect";
 import react from "../../components/imgs/react.png";
 import laravel from "../../components/imgs/laravel.png";
 import { SparklesCore } from "../../components/ui/sparkles";
